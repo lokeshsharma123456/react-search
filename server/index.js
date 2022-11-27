@@ -12,16 +12,16 @@ dotenv.config()
 
 
 app.use(express.json());
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors());
 app.use('/app', routeUrls)
 
 
-mongoose.connect(process.env.DATABASE_ACCESS, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-    .then(() => console.log("Connection to MongoDB successfull..."))
-    .catch((err) => console.log("Unable to connect to MongoDB...", err));
+// mongoose.connect(process.env.DATABASE_ACCESS, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// })
+//     .then(() => console.log("Connection to MongoDB successfull..."))
+//     .catch((err) => console.log("Unable to connect to MongoDB...", err));
 
 const mongoDBstore = new MongoDBStore({
     uri: process.env.DATABASE_ACCESS,
@@ -40,13 +40,42 @@ app.get("/getusers",(req,res)=>{
     })
 });
 
+app.get("/search", async (req, res) => {
+    const p = req.query.p;
+    console.log(p);
+    /**
+     * insert this search query to a mongoose table => history
+     * 
+     * fetch data from elastic with the help of python script
+     * send the data to the UI.
+     * 
+     * cons data = fetchDataFromElastic();
+     * res.send(data);
+     */
+     res.json([{
+        link: 'http://www.google.com/1/',
+        documentTitle: "Doc 1",
+     },{
+        link: 'http://www.google.com/2/',
+        documentTitle: "Doc 2",
+     },{
+        link: 'http://www.google.com/3/',
+        documentTitle: "Doc 3",
+     },{
+        link: 'http://www.google.com/4/',
+        documentTitle: "Doc 4",
+     },{
+        link: 'http://www.google.com/5/',
+        documentTitle: "Doc 5",
+     }]);
+})
+
 app.post("/createuser",async (req,res)=>{
     const user=req.body
     const newuser=new Usermodel(user);
     await newuser.save();
     res.json(user);
 })
-
 
 app.listen(3001,()=>{
     console.log("server_runs_perfectely");
