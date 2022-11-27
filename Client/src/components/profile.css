@@ -1,0 +1,39 @@
+#boys{
+    margin-top: 20px;
+    color: aliceblue;
+    font-size: 25px;
+    background-color: blueviolet;
+}
+
+/* table,
+th,
+td {
+    border: 5px solid white;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th,td, tr{
+    width: 300px;
+    border: 5px solid burlywood;
+    border-collapse: collapse;
+    background-color: cyan;
+    font-size: 20px;
+} */
+
+/* #past{
+    background-color: aliceblue;
+    border-radius:15px;
+} */
+#p1{
+    margin-top: 5px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: black;
+    border-radius:15px;
+    background-color: rgb(234, 234, 234);
+    width: relative;
+    font-size: 20px;
+    color: rgb(62, 62, 238);
+}
